@@ -1,0 +1,11 @@
+.img-fluid{
+    width:50%
+}
+.carousel-img{
+    /* width:50%; */
+    display: flex;
+    justify-content: center;
+}
+.symptom{
+    justify-content: space-around;
+}
