@@ -33,6 +33,11 @@ app.use("/public", express.static(__dirname + '/public'));
 
 
 // var indexRoute = require('./routes/index');
+var covidRoute = require('./routes/covidRoutes');
+var requestRoute = require('./routes/requestRoutes');
+
+app.use('/covid', covidRoute);
+app.use('/request', requestRoute);
 
 
 

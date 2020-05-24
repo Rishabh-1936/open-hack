@@ -17,25 +17,16 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
+    <script src="/ _/firebase/init.js"></script>
+
     <link href="../public/css/carousel.css" rel="stylesheet" type="text/css">
-
-
-    <style>
-        .content-row {
-            border-top: 1px orange solid;
-            border-bottom: 1px orange solid;
-        }
-
-        .content {
-            padding: 2%;
-        }
-    </style>
-
+    <link href="../public/css/home.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
     <div id="main">
+        <!-- 
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"><b>NeighbourHood</b></a>
@@ -56,20 +47,18 @@
                         <a class="nav-link" href="/status">Status</a>
                     </li>
 
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="/barter">Barter</a>
-                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="/covid">Cornavirus</a>
                     </li>
                 </ul>
                 <div class="form-inline my-2 my-lg-0 active">
-                    <!-- <a class=" nav-link" style="color:black" href="/logout">Logout</a> -->
                     <a class="nav-link" style="color:black" href="/login">Login / SignUp<span
                             class="sr-only">(current)</span></a>
                 </div>
             </div>
-        </nav>
+        </nav> -->
+
+        <%- include('partials/nav')%>
 
         <div class="header my-5">
 
@@ -83,26 +72,45 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-6">
+                <div class="col-5">
                     <h1>Request For help</h1>
                     <h3>Food and Shelter</h3>
-                    <a class="btn btn-primary">Request</a>
+                    <a class="btn btn-primary" href="/request">Request</a>
                 </div>
-                <div class="col-6">
-                    <img src="https://i.dlpng.com/static/png/1547669-banner-library-library-family-health-can-be-fun-food-choices-healthy-foods-for-kids-png-640_350_preview.png"
-                        class="img-fluid" alt="...">
+                <div class="col-7">
+                    <img src="../public/images/food.png" class="img-fluid-1" alt="...">
                 </div>
             </div>
             <hr>
             <div class="row">
-                <div class="col-6">
-                    <img src="../public/images/request.svg" class="img-fluid" alt="...">
+                <div class="col-7">
+                    <img src="../public/images/request.svg" class="img-fluid-2" alt="...">
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <h1>Help Others</h1>
                     <h3>By getting started as volunteer</h3>
-                    <a class="btn btn-primary">SignUp as Volunteer</a>
+                    <a class="btn btn-primary" href="/signup">SignUp as Volunteer</a>
                 </div>
             </div>
-
+            <hr>
+            <div class="row">
+                <div class="col-5">
+                    <h1>Not feeling well</h1>
+                    <h3>Get Health Checkup and Virtual Report</h3>
+                    <a class="btn btn-primary" href="/health">Get Diagnose</a>
+                </div>
+                <div class="col-7">
+                    <img src="../public/images/doctor.png" class="img-fluid-3" alt="...">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-7">
+                    <img src="../public/images/facts.svg" class="img-fluid-3" alt="...">
+                </div>
+                <div class="col-5">
+                    <h1>Get your facts right</h1>
+                    <a class="btn btn-primary" href="/covid">Check the live stats</a>
+                </div>
+            </div>
         </div>
