@@ -59,9 +59,6 @@ app.use("/public", express.static(__dirname + '/public'));
 
 app.listen(3000 || process.env.PORT, () => {
     console.log('Server started');
-    getAllData();
-    getSpecificData('shreyas.sanghvi11@gmail.com'); //pass email to query object
-
 });
 
 app.get('/', (req, res) => {
@@ -72,64 +69,69 @@ app.get('/signup', (req, res) => {
     res.render('login-signup');
 });
 
-app.get('/login', (req, res) => {
-    res.render('login-signup');
-    // login(req.body);
-});
-
 app.post('/login', (req, res) => {
-    let flag = login(req.body);
-    if (flag == 1) {
-        req.session.msg = "Login Successful";
-        res.redirect('/');
-    } else {
-        req.session.msg = "Error in Login";
-        res.redirect('/login');
-    }
+    login(req.body, res);
+    // if (flag == 1) {
+    //     req.session.msg = "Login Successful";
+    //     res.redirect('/');
+    // } else {
+    //     req.session.msg = "Error in Login";
+    //     res.redirect('/login');
+    // }
 });
 
 app.get('/covid', (req, res) => {
 
-    return res.redirect('https://covid19.who.int/');
+    res.render('covid/main')
+    // return res.redirect('https://covid19.who.int/');
+});
+app.get('/covid/health', (req, res) => {
+    res.render('covid/health');
 });
 
 app.post('/signup', (req, res) => {
 
-    signUp(req.body);
+    signUp(req.body, req, res);
     // res.render('');
 });
 
 app.get('/logout', (req, res) => {
-    logout();
+    logout(res);
     res.redirect('/');
 });
 
 
 //************* authentication ***************
-function login(data) {
+function login(data, req, res) {
     const promise = auth.signInWithEmailAndPassword(data.email, data.password);
     promise.catch(e => alert(e.message));
-    return initApp();
+    initApp(req, res);
+    console.log('i am back')
 }
 
-function signUp(data) {
+function signUp(data, req, res) {
     const promise = auth.createUserWithEmailAndPassword(data.email, data.password);
-    initApp()
     promise.catch(e => console.log(e.message));
     formData(data);
-    return 1;
+    initApp(req, res);
 }
 
-function logout() {
-    auth.signOut();
+function logout(req, res) {
+
+    firebase.auth().signOut();
+    console.log(req)
     promise.catch(e => alert(e.message));
-    initApp();
+    req.session.isAuthenticated = "false"
+    res.redirect('/');
+    initApp(req, res);
 }
-function initApp() {
+
+function initApp(req, res) {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log("Signed in user!");
-            return 1;
+            req.session.isAuthenticated = "true"
+            res.redirect('/');
         } else {
             console.log("No user!")
             return -1;
